@@ -1,16 +1,13 @@
-import Navbar from "./components/Navbar";
 import ContactsProvider from "./context/ContactsProvider";
 import ActiveTabProvider  from "./context/ActiveTabProvider";
-import Test from "./Test";
-import ActivePage from "./components/ActivePage";
+import Home from "./pages/Home";
+
 
 function App() {
 	return (
 		<ContactsProvider>
 			<ActiveTabProvider>
-				<Navbar />
-				<ActivePage/>
-				<Test />
+				<Home/>
 			</ActiveTabProvider>
 		</ContactsProvider>
 	);
