@@ -1,7 +1,7 @@
 .nav {
     width: 100%;
     height: 70px;
-    background: #e8e8e8;
+    border-bottom: 2px solid #e8e8e8;
 }
 .navList {
     width: 100%;
@@ -10,7 +10,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 30px;
 }
 .navList li {
     font-size: 1.2rem;
@@ -19,7 +18,7 @@
     transition: .2s ease;
 }
 .navList li:hover {
-    color: #6439FF;
+    color: #6439FF !important; 
 }
 .active {
     color: #6439FF;

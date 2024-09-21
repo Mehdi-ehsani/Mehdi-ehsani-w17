@@ -1,7 +1,7 @@
 import React , {useContext} from 'react'
 import { ActiveTabContext } from '../context/ActiveTabProvider'
 import Contacts from "./Contacts"
-import AddContact from "./AddContacts"
+import AddContact from "./addContact/AddContacts"
 
 
 const ActivePage = () => {
