@@ -1,5 +1,7 @@
-import React, { useReducer } from "react";
+import React, { useReducer ,useContext } from "react";
 import styles from "./addContacts.module.css";
+import { ActiveTabContext } from '../../context/ActiveTabProvider'
+
 
 const initialState = {
 	name: "",
@@ -33,6 +35,8 @@ const reducer = (state, action) => {
 
 const AddContacts = () => {
 	const [formData, dispatchFormData] = useReducer(reducer, initialState);
+	const [activeTab , dispatch] = useContext(ActiveTabContext)  
+
 
 	const validate = () => {
 		let isValid = true;
@@ -107,6 +111,7 @@ const AddContacts = () => {
 				.then((data) => {
 					console.log("Success:", data);
 					dispatchFormData({ type: "SUCCES", payload: "" });
+					dispatch("ACTIVE_CONTACTS_TAB")
 				})
 				.catch((error) => console.error("Error:", error));
 		}
