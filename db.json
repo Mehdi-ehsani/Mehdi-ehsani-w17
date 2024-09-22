@@ -56,17 +56,6 @@
       }
     },
     {
-      "name": "mmdtoni",
-      "email": "metti.work@gmail.com",
-      "job": "Developer",
-      "errors": {
-        "name": "",
-        "email": "",
-        "job": ""
-      },
-      "id": "a3c0"
-    },
-    {
       "name": "golimam",
       "email": "metti.work@gmail.com",
       "job": "Manager",
@@ -98,17 +87,6 @@
         "email": "",
         "job": ""
       }
-    },
-    {
-      "name": "Aliam",
-      "email": "Ali.work@gmail.com",
-      "job": "Manager",
-      "errors": {
-        "name": "",
-        "email": "",
-        "job": ""
-      },
-      "id": "bdde"
     }
   ]
 }

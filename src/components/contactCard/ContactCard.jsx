@@ -17,6 +17,19 @@ const ContactCard = ({name , email , job , id}) => {
     setEditData(contactToEdit);
     setIsModalOpen(true)
   }
+  const deleteContact = () => {
+    fetch(`http://localhost:8000/contacts/${id}`, {
+      method: "DELETE",
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Contact deleted successfully");
+        } else {
+          console.error("Failed to delete contact");
+        }
+      })
+      .catch((error) => console.error("Error:", error));
+  }
   return (
     <>
     <div className={styles.container}>
@@ -28,7 +41,7 @@ const ContactCard = ({name , email , job , id}) => {
         </div>
         <div className={styles.btnContainer}>
             <button onClick={editHandler} className={styles.editBtn}>Edit</button>
-            <button className={styles.deleteBtn}>Delete</button>
+            <button onClick={deleteContact} className={styles.deleteBtn}>Delete</button>
         </div>
     </div>
     {isModalOpen && <EditContactModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} name={editData.name} id={editData.id} email={editData.email} job={editData.job}  />}
