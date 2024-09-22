@@ -16,16 +16,16 @@ const reducer = (state , action) => {
 }
 
 const ContactsProvider = ({children}) => {
-  const [contacts , dispatch] = useReducer(reducer , initialState); 
+  const [contacts , dispatchContact] = useReducer(reducer , initialState); 
   useEffect(() => {
         fetch("http://localhost:8000/contacts")
            .then(res => res.json())
-           .then(data => dispatch({type: "SUCCES" , payload: data}))
-           .catch(error => dispatch({type: "FAILED" , payload: error.message}))
+           .then(data => dispatchContact({type: "SUCCES" , payload: data}))
+           .catch(error => dispatchContact({type: "FAILED" , payload: error.message}))
   },[contacts]) 
 
   return (
-    <ContactsContext.Provider value={contacts}>
+    <ContactsContext.Provider value={[contacts , dispatchContact]}>
         {children}
     </ContactsContext.Provider>
   )
