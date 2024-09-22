@@ -1,6 +1,6 @@
 import React , {useContext} from 'react'
 import { ActiveTabContext } from '../context/ActiveTabProvider'
-import Contacts from "./Contacts"
+import Contacts from "./contacts/Contacts"
 import AddContact from "./addContact/AddContacts"
 
 

@@ -92,9 +92,6 @@ const AddContacts = () => {
 				case "JOB":
 					dispatchFormData({ type: "JOB", payload: value });
 				}
-				
-				console.log(formData)
-				console.log(name , value)
 			};
 	const addToContacts = (event) => {
 		event.preventDefault();
@@ -115,27 +112,30 @@ const AddContacts = () => {
 		}
 	};
 	return (
-		<form>
-			<label>Name:</label>
+		<form className={styles.form}>
+			<div className={styles.InputContainer}>
+			<label className={styles.inputLabel}>Name:</label>
 			<input
 				type="text"
 				name="Name"
 				value={formData.name}
 				onChange={changeHandler}
+				className={styles.input}
 			/>
 			<p>{formData.errors.name}</p>
-			<label>Email:</label>
+			<label className={styles.inputLabel}>Email:</label>
 			<input
 				type="text"
 				name="Email"
 				value={formData.email}
 				onChange={changeHandler}
+				className={styles.input}
 			/>
 			<p>{formData.errors.email}</p>
-			<label>Job:</label>
-			{/* <input type="text" id="Job" value={formData.job} onChange={changeHandler} /> */}
-			<div>
+			<label className={styles.jobLabel}>Job:</label>
+			<div className={styles.radioContainer}>
 				<input
+				    className={styles.radio}
 					type="radio"
 					id="Developer"
 					name="job"
@@ -143,8 +143,9 @@ const AddContacts = () => {
 					onChange={changeHandler}
 					checked={formData.job === "Developer"}
 				/>
-				<label htmlFor="Developer">Developer</label>
+				<label htmlFor="Developer" style={formData.job === "Developer" ? {background: "#6439FF40" , color: "#6439FF"}: null}>Developer</label>
 				<input
+				    className={styles.radio}
 					type="radio"
 					id="Designer"
 					name="job"
@@ -152,8 +153,9 @@ const AddContacts = () => {
 					onChange={changeHandler}
 					checked={formData.job === "Designer"}
 				/>
-				<label htmlFor="Designer">Designer</label>
+				<label htmlFor="Designer" style={formData.job === "Designer" ? {background: "#6439FF40" , color: "#6439FF"}: null}>Designer</label>
 				<input
+				    className={styles.radio}
 					type="radio"
 					id="Manager"
 					name="job"
@@ -161,9 +163,10 @@ const AddContacts = () => {
 					onChange={changeHandler}
 					checked={formData.job === "Manager"}
 				/>
-				<label htmlFor="Manager">Manager</label>
+				<label htmlFor="Manager" style={formData.job === "Manager" ? {background: "#6439FF40" , color: "#6439FF"}: null}>Manager</label>
 			</div>
 			<p>{formData.errors.job}</p>
+			</div>
 			<button onClick={addToContacts}>Add Contact</button>
 		</form>
 	);
