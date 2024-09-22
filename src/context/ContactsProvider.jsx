@@ -22,7 +22,7 @@ const ContactsProvider = ({children}) => {
            .then(res => res.json())
            .then(data => dispatch({type: "SUCCES" , payload: data}))
            .catch(error => dispatch({type: "FAILED" , payload: error.message}))
-  },[]) 
+  },[contacts]) 
 
   return (
     <ContactsContext.Provider value={contacts}>
