@@ -3,10 +3,11 @@ import styles from './ContactCard.module.css'
 import userImg from "../../assets/image/user.png"
 import { ContactsContext } from "../../context/ContactsProvider";
 import EditContactModal from '../editContactModal/EditContactModal';
+import axios from 'axios';
 
 
 
-const ContactCard = ({name , email , job , id ,isSelected , handleCheckboxChange}) => { 
+const ContactCard = ({name , email , job , id ,isSelected , handleCheckboxChange , showCheckBox}) => { 
 	const [{ isLoading, data, error } , dispatchContact] = useContext(ContactsContext);
   const [editData , setEditData] = useState(null)
   const [isModalOpen , setIsModalOpen] = useState(false)
@@ -17,16 +18,8 @@ const ContactCard = ({name , email , job , id ,isSelected , handleCheckboxChange
     setIsModalOpen(true)
   }
   const deleteContact = () => {
-    fetch(`http://localhost:8000/contacts/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log("Contact deleted successfully");
-        } else {
-          console.error("Failed to delete contact");
-        }
-      })
+    axios.delete(`http://localhost:8000/contacts/${id}`)
+      .then((response) => console.log(response.status, response.data))
       .catch((error) => console.error("Error:", error));
   }
 
@@ -42,11 +35,7 @@ const ContactCard = ({name , email , job , id ,isSelected , handleCheckboxChange
         <div className={styles.btnContainer}>
             <button onClick={editHandler} className={styles.editBtn}>Edit</button>
             <button onClick={deleteContact} className={styles.deleteBtn}>Delete</button>
-            <input
-      type="checkbox"
-      checked={isSelected}
-      onChange={() => handleCheckboxChange(id)}
-    />
+            {showCheckBox &&   <input  type="checkbox" checked={isSelected} onChange={() => handleCheckboxChange(id)}/>}
         </div>
     </div>
     {isModalOpen && <EditContactModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} name={editData.name} id={editData.id} email={editData.email} job={editData.job}  />}

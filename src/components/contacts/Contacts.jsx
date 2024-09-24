@@ -2,10 +2,12 @@ import React, { useContext ,useState } from "react";
 import { ContactsContext } from "../../context/ContactsProvider";
 import ContactCard from "../contactCard/ContactCard";
 import styles from "./contacts.module.css"
+import axios from "axios";
 
 const Contacts = () => {
 	const [{ isLoading, data, error }, dispatchContact] = useContext(ContactsContext);
 	const [selectedIds, setSelectedIds] = useState([]);
+	const [showCheckBox , setShowCheckBox] = useState(false)
 
 	const handleCheckboxChange = (id) => {
 		setSelectedIds((prevSelectedIds) => {
@@ -17,25 +19,18 @@ const Contacts = () => {
 		});
 	  };
 	  const deleteSelectedContacts = () => {
-		selectedIds.forEach((id) => {
-		  fetch(`http://localhost:8000/contacts/${id}`, {
-			method: 'DELETE',
-		  })
-			.then((response) => {
-			  if (response.ok) {
-				console.log(`Contact with id ${id} deleted successfully`);
-			  } else {
-				console.error(`Failed to delete contact with id ${id}`);
-			  }
-			})
-			.catch((error) => console.error('Error:', error));
-		});
+		axios.all(selectedIds.map(id => axios.delete(`http://localhost:8000/contacts/${id}`)))
+		 .then(res => console.log("Delete All",res))
+		 .catch(error => console.log("Error",error))
 		setSelectedIds([]);
 	  };  
 	return (
 		<div>
 			<div>{isLoading && <h1>Loading...</h1>}</div>
-			<div>{selectedIds.length > 0 && <button onClick={deleteSelectedContacts}>Del All</button>}</div>
+	        <div className={styles.btnContainer}>
+			<div>{selectedIds.length > 0 && <button className={styles.deleteAllBtn} onClick={deleteSelectedContacts}>Delete All</button>}</div>
+			<div>{!!data.length && <button className={styles.selectBtn} onClick={() => setShowCheckBox(!showCheckBox)}>Select Contacts</button>}</div>
+			</div>
 			<div className={styles.contactsContainer}>
 				{!!data.length &&
 					data.map((contact) => (
@@ -47,6 +42,7 @@ const Contacts = () => {
 							job={contact.job}
 							isSelected={selectedIds.includes(contact.id)}
 							handleCheckboxChange={handleCheckboxChange}
+							showCheckBox={showCheckBox}
 						/>
 					))}
 					

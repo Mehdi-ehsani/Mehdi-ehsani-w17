@@ -1,4 +1,5 @@
 import {createContext , useReducer , useEffect} from 'react'
+import axios from 'axios';
 
 export const ContactsContext = createContext();
 const initialState = {
@@ -18,9 +19,8 @@ const reducer = (state , action) => {
 const ContactsProvider = ({children}) => {
   const [contacts , dispatchContact] = useReducer(reducer , initialState); 
   useEffect(() => {
-        fetch("http://localhost:8000/contacts")
-           .then(res => res.json())
-           .then(data => dispatchContact({type: "SUCCES" , payload: data}))
+        axios.get("http://localhost:8000/contacts")
+           .then(({data}) => dispatchContact({type: "SUCCES" , payload: data}))
            .catch(error => dispatchContact({type: "FAILED" , payload: error.message}))
   },[contacts]) 
 

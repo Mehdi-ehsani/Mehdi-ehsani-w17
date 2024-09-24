@@ -1,11 +1,10 @@
-import React , {useReducer , useContext} from 'react'
+import React , { useReducer } from 'react'
 import styles from "./editContactModal.module.css"
-import { ContactsContext } from "../../context/ContactsProvider";
+import axios from 'axios';
 
 
 
 const EditContactModal = ({name , job , email , id , isModalOpen , setIsModalOpen}) => {
-	const [{ isLoading, data, error } , dispatchContact] = useContext(ContactsContext);
     const initialState = {
         name: name,
         email: email,
@@ -99,14 +98,7 @@ const EditContactModal = ({name , job , email , id , isModalOpen , setIsModalOpe
 	const addToContacts = (event) => {
 		event.preventDefault();
 		if (validate()) {
-			fetch(`http://localhost:8000/contacts/${id}`, {
-				method: "PUT",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			})
-				.then((response) => response.json())
+			axios.put(`http://localhost:8000/contacts/${id}`, formData)
 				.then((data) => {
 					console.log("Success:", data);
 					dispatchFormData({ type: "SUCCES", payload: "" });

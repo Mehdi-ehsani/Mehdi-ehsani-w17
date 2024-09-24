@@ -1,6 +1,7 @@
 import React, { useReducer ,useContext } from "react";
 import styles from "./addContacts.module.css";
 import { ActiveTabContext } from '../../context/ActiveTabProvider'
+import axios from "axios";
 
 
 const initialState = {
@@ -100,16 +101,9 @@ const AddContacts = () => {
 	const addToContacts = (event) => {
 		event.preventDefault();
 		if (validate()) {
-			fetch("http://localhost:8000/contacts", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(formData),
-			})
-				.then((response) => response.json())
+			axios.post("http://localhost:8000/contacts", formData)
 				.then((data) => {
-					console.log("Success:", data);
+					console.log("Success-Add:", data);
 					dispatchFormData({ type: "SUCCES", payload: "" });
 					dispatch("ACTIVE_CONTACTS_TAB")
 				})
