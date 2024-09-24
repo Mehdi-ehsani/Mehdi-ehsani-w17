@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { ActiveTabContext } from "../../context/ActiveTabProvider";
+import React from "react";
 import styles from "./navbar.module.css"
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-	const [activeTab, dispatch] = useContext(ActiveTabContext);
+
 
 	return (
 		<div className={styles.nav}>
 			<ul className={styles.navList}>
-				<li style={activeTab.contacts ? {color: "#6439FF"} : {color: "#222"}}   onClick={() => dispatch("ACTIVE_CONTACTS_TAB")}>Contacts</li>
-				<li style={activeTab.addContact ? {color: "#6439FF"} : {color: "#222"}} onClick={() => dispatch("ACTIVE_ADD_CONTACT_TAB")}>Add Contact</li>
+				<Link to="/">Contacts</Link>
+				<Link to="/Add-Contact">Add Contact</Link>
 			</ul>
 		</div>
 	);

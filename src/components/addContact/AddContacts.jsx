@@ -1,7 +1,7 @@
-import React, { useReducer ,useContext } from "react";
+import React, { useReducer } from "react";
 import styles from "./addContacts.module.css";
-import { ActiveTabContext } from '../../context/ActiveTabProvider'
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const initialState = {
@@ -35,8 +35,8 @@ const reducer = (state, action) => {
 };
 
 const AddContacts = () => {
-	const [formData, dispatchFormData] = useReducer(reducer, initialState);
-	const [activeTab , dispatch] = useContext(ActiveTabContext)  
+	const [formData, dispatchFormData] = useReducer(reducer, initialState); 
+	const navigate = useNavigate();
 
 
 	const validate = () => {
@@ -105,7 +105,7 @@ const AddContacts = () => {
 				.then((data) => {
 					console.log("Success-Add:", data);
 					dispatchFormData({ type: "SUCCES", payload: "" });
-					dispatch("ACTIVE_CONTACTS_TAB")
+					navigate("/")
 				})
 				.catch((error) => console.error("Error:", error));
 		}

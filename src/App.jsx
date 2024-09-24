@@ -1,14 +1,20 @@
 import ContactsProvider from "./context/ContactsProvider";
-import ActiveTabProvider  from "./context/ActiveTabProvider";
+import { Route , Routes } from "react-router-dom";
 import Home from "./pages/Home";
+import Navbar from "./components/navbar/Navbar.jsx"
+import AddContacts from "./components/addContact/AddContacts";
 
 
 function App() {
 	return (
 		<ContactsProvider>
-			<ActiveTabProvider>
-				<Home/>
-			</ActiveTabProvider>
+			
+				<Navbar/>
+				<Routes>
+					<Route path="/" element={<Home/>} />
+					<Route path="/Add-Contact" element={<AddContacts/>} />
+				</Routes>
+		
 		</ContactsProvider>
 	);
 }

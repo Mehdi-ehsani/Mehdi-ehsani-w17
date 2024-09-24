@@ -1,12 +1,10 @@
-import Navbar from "../components/navbar/Navbar";
-import ActivePage from "../components/ActivePage";
+import Contacts from "../components/contacts/Contacts";
 import styles from "./home.module.css";
 
 const Home = () => {
 	return (
 		<div className={styles.container}>
-			<Navbar />
-			<ActivePage />
+			<Contacts/>
 		</div>
 	);
 };
