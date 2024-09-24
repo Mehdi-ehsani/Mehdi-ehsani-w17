@@ -4,7 +4,7 @@ import axios from 'axios';
 
 
 
-const EditContactModal = ({name , job , email , id , isModalOpen , setIsModalOpen}) => {
+const EditContactModal = ({name , job , email , id , setIsEditModalOpen}) => {
     const initialState = {
         name: name,
         email: email,
@@ -102,13 +102,13 @@ const EditContactModal = ({name , job , email , id , isModalOpen , setIsModalOpe
 				.then((data) => {
 					console.log("Success:", data);
 					dispatchFormData({ type: "SUCCES", payload: "" });
-                    setIsModalOpen(false)
+                    setIsEditModalOpen(false)
 				})
 				.catch((error) => console.error("Error:", error));
 		}
 	};
 	return (
-        <div className={styles.container} onClick={() => setIsModalOpen(false)}>
+        <div className={styles.container} onClick={() => setIsEditModalOpen(false)}>
 
 		<form className={styles.form} onClick={(e) => e.stopPropagation()}>
 			<div className={styles.InputContainer}>
