@@ -14,7 +14,7 @@
     inset: 0;
     width: 400px;
     height: 480px;
-    background: #f2f2f2;
+    background: var(--card-background);
     margin: 50px auto;
     padding: 30px;
     border-radius: 32px;
@@ -22,7 +22,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 2px 2px 16px #d0d0d0;
+    box-shadow: var(--card-shadow);
 }
 .InputContainer {
     width: 100%;
@@ -35,18 +35,21 @@
     border-radius: 11px;
     padding: 0 10px;
     font-size: 1.2rem;
-    box-shadow: 2px 2px 6px #e3e3e3;
-
+    box-shadow: var(--card-shadow);
+    background: var(--input-background);
+    color: var(--label-color);
 }
 .inputLabel , .jobLabel{
     display: block;
     margin: 20px 0 10px;
+    color: var(--label-color);
 }
 .radioContainer {
     width: 100%;
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: space-between;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
 }
 .radio {
@@ -61,14 +64,14 @@
     height: 45px;
     border: 1px solid #6439FF;
     background: #6439FF12;
-    color: #222;
+    color: var(--label-color);
     padding: 0px 10px;
     font-size: 1.2rem;
     text-align: center;
     line-height: 45px;
     border-radius: 9px;
     transition: .18s ease-in;
-    box-shadow: 2px 2px 16px #d5d5d5;
+    box-shadow: var(--card-shadow);
 
 }
 .form button {
@@ -80,7 +83,7 @@
     border-radius: 12px;
     background: linear-gradient(150deg , #6439FF , #3700ff);
     color: #ffffff;
-    box-shadow: 2px 2px 16px #b3b3b3;
+    box-shadow: var(--card-shadow);
 }
 .form button:hover {
     background: linear-gradient(150deg , #5323ff , #1e008a);
@@ -89,4 +92,16 @@ p {
     color: rgb(227, 0, 0);
     margin-top: 5px ;
     font-size: .9rem;
+}
+@media (max-width: 460px) {
+	.form {
+        width: calc(100% - 40px);
+		margin:20px;
+	}
+    .radioContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+    .radioContainer label:last-child {
+        grid-column: 1/3;
+    }
 }

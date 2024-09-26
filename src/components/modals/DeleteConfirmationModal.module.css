@@ -13,7 +13,7 @@
 .deleteModal {
     width: 380px;
     height: 150px;
-    background: #fff;
+    background: var(--card-background);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,12 +42,13 @@
     outline: none;
     font-size: 1.1rem;
     cursor: pointer;
-    box-shadow: 2px 2px 16px #d0d0d0;
+    box-shadow: var(--card-shadow);
     transition: .3s ease-out;
     border-radius: 10px;
+    background: transparent;
 }
 .closeBtn {
-    background: linear-gradient(150deg , #6439FF , #3700ff);
+    background: linear-gradient(150deg , #6439FF , #3700ff) !important;
     color: #fff;
 }
 .closeBtn:hover {
@@ -59,4 +60,19 @@
 .deleteBtn:hover {
     color: #fff;
     background: rgb(208, 0, 0);;
+}
+@media (max-width: 440px) {
+	.deleteModal {
+		width: 100%;
+        height: 130px;
+		margin: 0 20px;
+	}
+    .deleteModal h1 {
+        font-size: 1rem;
+    }
+    .deleteModal button {
+        width: 100px;
+        height: 38px;
+        font-size: 1rem;
+    }
 }

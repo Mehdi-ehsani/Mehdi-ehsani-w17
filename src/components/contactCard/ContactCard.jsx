@@ -31,7 +31,7 @@ const ContactCard = ({name , email , job , id ,isSelected , handleCheckboxChange
         <div className={styles.btnContainer}>
             <button onClick={editHandler} className={styles.editBtn}>Edit</button>
             <button onClick={() => setIsDeleteModalOpen(true)} className={styles.deleteBtn}>Delete</button>
-            {showCheckBox &&   <input  type="checkbox" checked={isSelected} onChange={() => handleCheckboxChange(id)}/>}
+            {showCheckBox &&   <input  type="checkbox"  checked={isSelected} onChange={() => handleCheckboxChange(id)}/>}
         </div>
     </div>
     {isEditModalOpen && <EditContactModal isEditModalOpen={isEditModalOpen} setIsEditModalOpen={setIsEditModalOpen} name={editData.name} id={editData.id} email={editData.email} job={editData.job}  />}

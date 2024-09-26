@@ -33,9 +33,10 @@
 }
 .radioContainer {
     width: 100%;
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: space-between;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
 }
 .radio {
@@ -78,4 +79,16 @@ p {
     color: rgb(227, 0, 0);
     margin-top: 5px ;
     font-size: .9rem;
+}
+@media (max-width: 460px) {
+	.form {
+        width: calc(100% - 40px);
+		margin:20px;
+	}
+    .radioContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+    .radioContainer label:last-child {
+        grid-column: 1/3;
+    }
 }

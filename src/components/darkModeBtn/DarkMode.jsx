@@ -6,11 +6,17 @@ import "./DarkMode.css";
 
 const DarkMode = () => {
     const setDarkMode = () => {
-       document.querySelector("body").setAttribute("data-theme" , "dark")
+       document.querySelector("body").setAttribute("data-theme" , "dark");
+       localStorage.setItem("theme" , "dark")
     }
     const setLightMode = () => {
-        document.querySelector("body").setAttribute("data-theme" , "light")
+        document.querySelector("body").setAttribute("data-theme" , "light");
+       localStorage.setItem("theme" , "light")
      }
+    const selectedTheme = localStorage.getItem("theme") || "light";
+    if(selectedTheme === "dark") {
+        setDarkMode()
+    } 
     const toggleTheme = (e) => {
         e.target.checked ? setDarkMode() : setLightMode()
     }
@@ -21,6 +27,7 @@ const DarkMode = () => {
                 type='checkbox'
                 id='darkmode-toggle'
                 onChange={toggleTheme}
+                defaultChecked={selectedTheme === "dark"}
             />
             <label className='dark_mode_label' htmlFor='darkmode-toggle'>
                 <Sun />

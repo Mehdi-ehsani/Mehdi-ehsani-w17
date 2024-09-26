@@ -11,18 +11,29 @@
     align-items: center;
     justify-content: space-between;
 }
-.navList li {
+.navList a {
+    text-decoration: none;
     font-size: 1.2rem;
     cursor: pointer;
-    color: #222;
+    color: var(--label-color);
     transition: .2s ease;
 }
-.navList li:hover {
+.navList a:hover {
     color: #6439FF !important; 
 }
 .active {
     color: #6439FF;
 }
 .deActive {
-    color: #222;
+    color: var(--label-color);
+}
+@media (max-width: 1280px) {
+	.nav {
+		padding: 0 20px;
+	}
+}
+@media (max-width: 675px) {
+	.navList a {
+		font-size: 1.1rem;
+	}
 }
