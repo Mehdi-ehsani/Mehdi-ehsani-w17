@@ -4,6 +4,7 @@ import ContactCard from "../contactCard/ContactCard";
 import styles from "./contacts.module.css"
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
+import emptyImg from "../../assets/image/empty.png"
 
 const Contacts = () => {
 	const [{ isLoading, data, error }, dispatchContact] = useContext(ContactsContext);
@@ -26,7 +27,7 @@ const Contacts = () => {
 		setSelectedIds([]);
 	  };  
 	return (
-		<div>
+		<div style={{position: "reletive"}}>
 			<div>{isLoading && <Spinner/>}</div>
 	        <div className={styles.btnContainer}>
 			<div>{selectedIds.length > 0 && <button className={styles.deleteAllBtn} onClick={deleteSelectedContacts}>Delete All</button>}</div>
@@ -46,8 +47,8 @@ const Contacts = () => {
 							showCheckBox={showCheckBox}
 						/>
 					))}
-					
 			</div>
+			{data.length === 0 && !error && <img className={styles.emptyImg} src={emptyImg} />}
 			<div>{!!error && <h1>{error}</h1>}</div>
 		</div>
 	);

@@ -1,0 +1,32 @@
+.pic {
+    width: 500px;
+    height: 500px;
+}
+.notfoundContainer {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.notfoundContainer a {
+    font-size: 1.1rem;
+    color: var(--label-color);
+    text-decoration: none;
+    border: 2px solid var(--label-color);
+    padding:10px;
+    border-radius: 9px;
+}
+.notfoundContainer a:hover {
+    background: linear-gradient(150deg , #6439FF , #3700ff);
+    color: var(--body-background);
+    border-color: var(--body-background);
+}
+@media (max-width: 675px) {
+	.pic {
+		width: 300px;
+		height: 300px;
+	}
+}
