@@ -3,6 +3,7 @@ import { ContactsContext } from "../../context/ContactsProvider";
 import ContactCard from "../contactCard/ContactCard";
 import styles from "./contacts.module.css"
 import axios from "axios";
+import Spinner from "../Spinner/Spinner";
 
 const Contacts = () => {
 	const [{ isLoading, data, error }, dispatchContact] = useContext(ContactsContext);
@@ -26,7 +27,7 @@ const Contacts = () => {
 	  };  
 	return (
 		<div>
-			<div>{isLoading && <h1>Loading...</h1>}</div>
+			<div>{isLoading && <Spinner/>}</div>
 	        <div className={styles.btnContainer}>
 			<div>{selectedIds.length > 0 && <button className={styles.deleteAllBtn} onClick={deleteSelectedContacts}>Delete All</button>}</div>
 			<div>{!!data.length && <button className={styles.selectBtn} onClick={() => {setShowCheckBox(!showCheckBox); setSelectedIds([])}}>{showCheckBox ? "Deselect All" : "Select All"}</button>}</div>
