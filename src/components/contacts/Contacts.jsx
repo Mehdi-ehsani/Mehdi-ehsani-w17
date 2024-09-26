@@ -29,7 +29,7 @@ const Contacts = () => {
 			<div>{isLoading && <h1>Loading...</h1>}</div>
 	        <div className={styles.btnContainer}>
 			<div>{selectedIds.length > 0 && <button className={styles.deleteAllBtn} onClick={deleteSelectedContacts}>Delete All</button>}</div>
-			<div>{!!data.length && <button className={styles.selectBtn} onClick={() => setShowCheckBox(!showCheckBox)}>Select Contacts</button>}</div>
+			<div>{!!data.length && <button className={styles.selectBtn} onClick={() => {setShowCheckBox(!showCheckBox); setSelectedIds([])}}>{showCheckBox ? "Deselect All" : "Select All"}</button>}</div>
 			</div>
 			<div className={styles.contactsContainer}>
 				{!!data.length &&
