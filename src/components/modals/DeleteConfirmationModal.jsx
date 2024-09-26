@@ -12,7 +12,7 @@ const DeleteConfirmationModal = ({setIsDeleteModalOpen , contactId}) => {
   return (
     <div className={styles.container} onClick={() => setIsDeleteModalOpen(false)}>
         <div className={styles.deleteModal} onClick={(e) => e.stopPropagation()}>
-            <h1>Do You Want Delete Contact?</h1>
+            <h1>Do You Want Delete This Contact?</h1>
             <div>
                 <button onClick={() => setIsDeleteModalOpen(false)} className={styles.closeBtn}>No</button>
                 <button onClick={deleteContact} className={styles.deleteBtn}>Yes</button>

@@ -1,11 +1,31 @@
+:root {
+   --body-background: #fff;
+   --body-color: linear-gradient(150deg , #6b6b6b , #000000);;
+   --card-background: #f2f2f2;
+   --card-shadow: 2px 2px 16px #d0d0d0;
+   --nav-line: 2px solid #e8e8e8;
+   --input-background: #fff;
+   --label-color: #222;
+}
+[data-theme= "dark"] {
+  --body-background: #222;
+  --body-color: linear-gradient(150deg , #ffffff , #dadada);;
+  --card-background: #333333;
+  --card-shadow: 2px 2px 16px #4c4c4c;
+  --nav-line: 2px solid #333333;
+  --input-background: #303030;
+  --label-color: #aaa;
+}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  transition:all .3s ease-in-out ;
 }
 body {
   max-width: 1280px;
   min-height: 100vh;
   margin: 0 auto;
   font-family: sans-serif;
+  background: var(--body-background);
 }

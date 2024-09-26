@@ -1,17 +1,6 @@
 {
   "contacts": [
     {
-      "name": "mmd",
-      "email": "mmd.work@gmail.com",
-      "job": "Developer",
-      "errors": {
-        "name": "",
-        "email": "",
-        "job": ""
-      },
-      "id": "a022"
-    },
-    {
       "id": "8146",
       "name": "Milad",
       "email": "mmd.work@gmail.com",

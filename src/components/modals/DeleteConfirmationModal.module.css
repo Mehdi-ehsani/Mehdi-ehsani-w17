@@ -8,10 +8,10 @@
     position: fixed;
     left: 0;
     top: 0;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);    
 }
 .deleteModal {
-    width: 400px;
+    width: 380px;
     height: 150px;
     background: #fff;
     display: flex;
@@ -20,19 +20,23 @@
     justify-content: space-between;
     padding: 20px;
     border-radius: 16px;
+    box-shadow: 3px 3px 6px 3px #22222220;
 }
 .deleteModal h1 {
-    font-size: 1.5rem;
-    color: rgb(239, 0, 0);
+    font-size: 1.1rem;
+    color: transparent;
+    background: linear-gradient(45deg,rgb(227, 0, 0), red);
+    background-clip: text;
 }
 .deleteModal div {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     width: 100%;
 }
 .deleteModal button {
-    width: 100%;
+    width: 120px;
     height: 45px;
     border: none;
     outline: none;
