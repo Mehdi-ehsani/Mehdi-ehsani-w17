@@ -1,7 +1,6 @@
 {
   "contacts": [
     {
-      "id": "8477",
       "name": "Milad",
       "email": "milad.work@gmail.com",
       "job": "Manager",
@@ -9,7 +8,8 @@
         "name": "",
         "email": "",
         "job": ""
-      }
+      },
+      "id": "8477"
     },
     {
       "id": "1b49",
