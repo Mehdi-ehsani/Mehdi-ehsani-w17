@@ -15,8 +15,36 @@
 }
 .btnContainer {
     display: flex;
+	align-items: center;
+	justify-content: space-between;
     gap: 10px;
     margin: 20px 0;
+}
+.btnc {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.searchInput {
+	display: flex;
+	align-items: center;
+	width: 300px;
+	height: 38px;
+	background: var(--card-background);
+	padding: 0 10px;
+	border-radius: 11px;
+	box-shadow: var(--card-shadow);
+}
+.searchInput input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--label-color);
+}
+.searchInput img {
+  width: 40px;
 }
 .deleteAllBtn {
 	padding: 0 10px;
@@ -57,6 +85,9 @@
 		grid-template-columns: 300px 300px 300px;
 		justify-content: center;
 	}
+	.btnContainer {
+		padding: 0 20px;
+	}
 }
 @media (max-width: 1000px) {
 	.contactsContainer {
@@ -72,6 +103,7 @@
 	.btnContainer {
 		width: fit-content;
 		margin: 20px auto;
+		flex-direction: column;
 	}
 	.btnContainer button {
 		font-size: 1rem;
@@ -80,5 +112,8 @@
 	.emptyImg {
 		width: 300px;
 		height: 300px;
+	}
+	.searchInput {
+		width: 100%px;
 	}
 }
