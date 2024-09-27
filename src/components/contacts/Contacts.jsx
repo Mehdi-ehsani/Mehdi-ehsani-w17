@@ -6,6 +6,7 @@ import axios from "axios";
 import Spinner from "../Spinner/Spinner";
 import emptyImg from "../../assets/image/empty.png";
 import searchImg from "../../assets/image/search.png";
+import NotFound from "../404/404";
 
 const Contacts = () => {
 	const [{ isLoading, data, error }, dispatchContact] =
@@ -98,7 +99,7 @@ const Contacts = () => {
 			{data.length  === 0 && !error && !isLoading && (		
 				<img className={styles.emptyImg} src={emptyImg} />	
 			)}
-			<div>{!!error && <h1>{error}</h1>}</div>
+			<div>{!!error && <NotFound/>}</div>
 		</div>
 	);
 };
