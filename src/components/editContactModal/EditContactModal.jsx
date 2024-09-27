@@ -1,10 +1,11 @@
-import React , { useReducer } from 'react'
+import React , { useReducer ,useState } from 'react'
 import styles from "./editContactModal.module.css"
 import axios from 'axios';
 
 
 
-const EditContactModal = ({name , job , email , id , setIsEditModalOpen}) => {
+const EditContactModal = ({name , job , email , setIsEditModalOpen , index}) => {
+	const [data , setData] = useState(JSON.parse(localStorage.getItem("contacts")) || [])
     const initialState = {
         name: name,
         email: email,
@@ -98,13 +99,9 @@ const EditContactModal = ({name , job , email , id , setIsEditModalOpen}) => {
 	const addToContacts = (event) => {
 		event.preventDefault();
 		if (validate()) {
-			axios.put(`http://localhost:8000/contacts/${id}`, formData)
-				.then((data) => {
-					console.log("Success:", data);
-					dispatchFormData({ type: "SUCCES", payload: "" });
-                    setIsEditModalOpen(false)
-				})
-				.catch((error) => console.error("Error:", error));
+			data[index] = formData;
+			localStorage.setItem('contacts', JSON.stringify(data));
+			setIsEditModalOpen(false);
 		}
 	};
 	return (

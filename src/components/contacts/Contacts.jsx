@@ -1,15 +1,13 @@
-import React, { useContext, useState } from "react";
-import { ContactsContext } from "../../context/ContactsProvider";
+import React, { useState } from "react";
 import ContactCard from "../contactCard/ContactCard";
 import styles from "./contacts.module.css";
-import axios from "axios";
 import Spinner from "../Spinner/Spinner";
 import emptyImg from "../../assets/image/empty.png";
 import searchImg from "../../assets/image/search.png";
 
+
 const Contacts = () => {
-	const [{ isLoading, data, error }, dispatchContact] =
-		useContext(ContactsContext);
+	const [data , setData] = useState(JSON.parse(localStorage.getItem("contacts")) || [])
 	const [selectedIds, setSelectedIds] = useState([]);
 	const [showCheckBox, setShowCheckBox] = useState(false);
 	const [searchedValue , setSearchedValue] = useState("")
@@ -34,19 +32,13 @@ const Contacts = () => {
 		});
 	};
 	const deleteSelectedContacts = () => {
-		axios
-			.all(
-				selectedIds.map((id) =>
-					axios.delete(`http://localhost:8000/contacts/${id}`)
-				)
-			)
-			.then((res) => console.log("Delete All", res))
-			.catch((error) => console.log("Error", error));
+		const updatedContacts = data.filter(contact => !selectedIds.includes(contact.id));
+		localStorage.setItem('contacts', JSON.stringify(updatedContacts));
+		dispatchContact({ type: "SUCCESS", payload: updatedContacts });
 		setSelectedIds([]);
 	};
 	return (
 		<div style={{ position: "reletive" }}>
-			<div>{isLoading && <Spinner />}</div>
 			<div className={styles.btnContainer}>
 						{!!data.length && (
 						<div className={styles.searchInput}>
@@ -82,9 +74,9 @@ const Contacts = () => {
 			</div>
 			<div className={styles.contactsContainer}>
 				{!!data.length &&
-					(searchedValue ? searchedData : data).map((contact) => (
+					(searchedValue ? searchedData : data).map((contact , index) => (
 						<ContactCard
-							key={contact.id}
+							key={index}
 							name={contact.name}
 							email={contact.email}
 							id={contact.id}
@@ -92,13 +84,10 @@ const Contacts = () => {
 							isSelected={selectedIds.includes(contact.id)}
 							handleCheckboxChange={handleCheckboxChange}
 							showCheckBox={showCheckBox}
+							index={index}
 						/>
 					))}
 			</div>
-			{data.length  === 0 && !error && !isLoading && (		
-				<img className={styles.emptyImg} src={emptyImg} />	
-			)}
-			<div>{!!error && <h1>{error}</h1>}</div>
 		</div>
 	);
 };

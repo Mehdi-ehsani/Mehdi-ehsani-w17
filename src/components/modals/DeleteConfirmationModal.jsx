@@ -1,13 +1,14 @@
 import styles from "./DeleteConfirmationModal.module.css"
-import axios from 'axios';
+import { useState } from "react"
 
 
-const DeleteConfirmationModal = ({setIsDeleteModalOpen , contactId}) => {
+const DeleteConfirmationModal = ({setIsDeleteModalOpen , index}) => {
+  const [data , setData] = useState(JSON.parse(localStorage.getItem("contacts")) || [])
   const deleteContact = () => {
-    axios.delete(`http://localhost:8000/contacts/${contactId}`)
-    .then((response) => console.log(response.status, response.data))
-    .catch((error) => console.error("Error:", error));
-    console.log("fewr")
+     const filteredData = data.filter((contact , indexContact) => indexContact !== index)
+     console.log(filteredData , index)
+     localStorage.setItem("contacts" , JSON.stringify(filteredData))
+     setIsDeleteModalOpen(false)
   }  
   return (
     <div className={styles.container} onClick={() => setIsDeleteModalOpen(false)}>

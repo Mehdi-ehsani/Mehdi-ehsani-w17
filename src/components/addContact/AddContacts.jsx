@@ -1,6 +1,5 @@
 import React, { useReducer } from "react";
 import styles from "./addContacts.module.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 
@@ -101,13 +100,15 @@ const AddContacts = () => {
 	const addToContacts = (event) => {
 		event.preventDefault();
 		if (validate()) {
-			axios.post("http://localhost:8000/contacts", formData)
-				.then((data) => {
-					console.log("Success-Add:", data);
-					dispatchFormData({ type: "SUCCES", payload: "" });
-					navigate("/")
-				})
-				.catch((error) => console.error("Error:", error));
+			try {
+                const storedContacts = JSON.parse(localStorage.getItem('contacts')) || [];
+                const updatedContacts = [...storedContacts, formData];
+                localStorage.setItem('contacts', JSON.stringify(updatedContacts));
+                dispatchFormData({ type: "SUCCESS" });
+                navigate("/");
+            } catch (error) {
+                console.error("Error:", error);
+            }
 		}
 	};
 	return (
