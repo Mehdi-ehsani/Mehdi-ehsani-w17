@@ -1,8 +1,5 @@
 import React , { useReducer ,useState } from 'react'
 import styles from "./editContactModal.module.css"
-import axios from 'axios';
-
-
 
 const EditContactModal = ({name , job , email , setIsEditModalOpen , index}) => {
 	const [data , setData] = useState(JSON.parse(localStorage.getItem("contacts")) || [])

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ContactCard from "../contactCard/ContactCard";
 import styles from "./contacts.module.css";
-import Spinner from "../Spinner/Spinner";
 import emptyImg from "../../assets/image/empty.png";
 import searchImg from "../../assets/image/search.png";
 
