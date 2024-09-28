@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useEffect } from "react";
 import { ContactsContext } from "../../context/ContactsProvider";
 import ContactCard from "../contactCard/ContactCard";
 import styles from "./contacts.module.css";
@@ -10,7 +10,16 @@ import NotFound from "../404/404";
 
 const Contacts = () => {
 	const [{ isLoading, data, error }, dispatchContact] =
-		useContext(ContactsContext);
+		useContext(ContactsContext);	
+    useEffect(() => {
+		const fetchData = () => {
+			axios.get("http://localhost:8000/contacts")
+			.then(({data}) => dispatchContact({type: "SUCCES" , payload: data}))
+			.catch(error => dispatchContact({type: "FAILED" , payload: error.message}))
+
+		}
+		fetchData()
+},[])		
 	const [selectedIds, setSelectedIds] = useState([]);
 	const [showCheckBox, setShowCheckBox] = useState(false);
 	const [searchedValue , setSearchedValue] = useState("")
@@ -41,7 +50,14 @@ const Contacts = () => {
 					axios.delete(`http://localhost:8000/contacts/${id}`)
 				)
 			)
-			.then((res) => console.log("Delete All", res))
+			.then((res) => {
+				console.log("Delete All", res)
+				return axios.get("http://localhost:8000/contacts");
+			})
+			.then(({ data }) => {
+				dispatchContact({ type: "SUCCES", payload: data });
+				setIsDeleteModalOpen(false);
+			  })
 			.catch((error) => console.log("Error", error));
 		setSelectedIds([]);
 	};

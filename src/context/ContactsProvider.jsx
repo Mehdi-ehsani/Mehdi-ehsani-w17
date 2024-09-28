@@ -22,7 +22,7 @@ const ContactsProvider = ({children}) => {
         axios.get("http://localhost:8000/contacts")
            .then(({data}) => dispatchContact({type: "SUCCES" , payload: data}))
            .catch(error => dispatchContact({type: "FAILED" , payload: error.message}))
-  },[contacts]) 
+  },[]) 
 
   return (
     <ContactsContext.Provider value={[contacts , dispatchContact]}>

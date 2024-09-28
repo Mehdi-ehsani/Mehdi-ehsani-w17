@@ -2,6 +2,7 @@ import React, { useReducer } from "react";
 import styles from "./addContacts.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ContactsContext } from "../../context/ContactsProvider";
 
 
 const initialState = {
@@ -35,7 +36,7 @@ const reducer = (state, action) => {
 };
 
 const AddContacts = () => {
-	const [formData, dispatchFormData] = useReducer(reducer, initialState); 
+	const [formData, dispatchFormData] = useReducer(reducer, initialState); 	
 	const navigate = useNavigate();
 
 

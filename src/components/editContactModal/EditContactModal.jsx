@@ -1,10 +1,13 @@
-import React , { useReducer } from 'react'
+import React , { useReducer , useContext  } from 'react'
+import { ContactsContext } from '../../context/ContactsProvider';
 import styles from "./editContactModal.module.css"
 import axios from 'axios';
 
 
 
 const EditContactModal = ({name , job , email , id , setIsEditModalOpen}) => {
+    const [{ isLoading, data, error }, dispatchContact] =
+		useContext(ContactsContext);
     const initialState = {
         name: name,
         email: email,
@@ -102,8 +105,13 @@ const EditContactModal = ({name , job , email , id , setIsEditModalOpen}) => {
 				.then((data) => {
 					console.log("Success:", data);
 					dispatchFormData({ type: "SUCCES", payload: "" });
-                    setIsEditModalOpen(false)
+					return axios.get("http://localhost:8000/contacts");
+                   
 				})
+				.then(({ data }) => {
+					dispatchContact({ type: "SUCCES", payload: data });
+					setIsEditModalOpen(false);
+				  })
 				.catch((error) => console.error("Error:", error));
 		}
 	};

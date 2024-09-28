@@ -1,13 +1,24 @@
 import styles from "./DeleteConfirmationModal.module.css"
 import axios from 'axios';
+import { useContext } from "react";
+import { ContactsContext } from "../../context/ContactsProvider";
 
 
 const DeleteConfirmationModal = ({setIsDeleteModalOpen , contactId}) => {
+  const [{ isLoading, data, error }, dispatchContact] =
+		useContext(ContactsContext);
+
   const deleteContact = () => {
     axios.delete(`http://localhost:8000/contacts/${contactId}`)
-    .then((response) => console.log(response.status, response.data))
+    .then((response) => {
+      console.log(response.status, response.data)
+      return axios.get("http://localhost:8000/contacts");
+    })
+    .then(({ data }) => {
+      dispatchContact({ type: "SUCCES", payload: data });
+      setIsDeleteModalOpen(false);
+    })
     .catch((error) => console.error("Error:", error));
-    console.log("fewr")
   }  
   return (
     <div className={styles.container} onClick={() => setIsDeleteModalOpen(false)}>

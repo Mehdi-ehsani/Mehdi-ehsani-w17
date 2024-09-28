@@ -19,15 +19,11 @@
     text-align: center;
 }
 .name {
-    color: transparent;
-    background: linear-gradient(150deg , #3992ff , #3700ff);
-    background-clip: text;
+    color: #3950ff;
 }
 .job , .email{
     font-size: 1.1rem;
-    color: transparent;
-    background: var(--body-color);
-    background-clip: text;
+    color: var(--label-color);
 }
 .job {
     margin-top: 5px;
